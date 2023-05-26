@@ -22,30 +22,242 @@
 
 \section{Introduction}
 
+Given a suitable set $A\subseteq\R^n$ the divergence theorem states that
+\begin{align*}
+	\int_A\diver w\dif\cL^n=\int_{\partial A}w\cdot\nu_A\dif\cH^{n-1}
+\end{align*}
+holds for each $w\in C^1(\R^n;\R^n)$. Here $\nu_A\colon \partial A\to S^{n-1}\subseteq\R^n$ is the exteriour unit normal and
+\begin{align*}
+	\diver w=\sum_i\partial_iw_i
+\end{align*}
+is the divergence. One of the major motivations of the Pfeffer integral is to generalise the integral on the Lebesgue-integral on the left-hand-side in such a way that the divergence theorem holds for $w$ with fewer regularity conditions.
+
 \section{Definition of the integral}
 
-Define
+\begin{definition}[essential interiour, exteriour, boundary]
+We define the essential interiour $\interiour_*A$ to be the set of density points of $A$.
+The essential exteriour $\exteriour_*A=\interiour_*A^\complement$ is the essential interiour of the complement of $A$. The essential boundary is given by
+\begin{align*}
+	\partial_*A=\R^n\setminus(\interiour_*A\cup\exteriour_*A)\,.
+\end{align*}
+\end{definition}
+
+\begin{definition}[relative perimiter]
+We define the relative perimiter of a measurable set $E$ to be 
+\begin{align*}
+	P(E,\text{in }A)=\cH^{n-1}\brk*{\partial_*E\cap \interiour_*A}\,.
+\end{align*}
+where $\cH^{n-1}$ denotes the $(n-1)$-dimensional Hausdorff-measure. We write $P(E)=P(E,\text{in }\R^n)$.
+\end{definition}
+
+\begin{definition}[BV-sets]
+A measurable set $A\subseteq\R^n$ is called a BV-set if $ \abs{A}+P(A)<\infty$. We denote by $\BV$ the set of all BV-sets and by $\BV_c$ the set of all bounded BV-sets.
+\end{definition}
+
+The reason for looking at BV-sets is the following. Given a BV-set $A$ there exists an exteriour normal $\nu_A\colon\partial_*A\to S^{n-1}\subseteq \R^n$ which is unique up to $\cH^{n-1}$-nullsets.
+
+
+
+\begin{definition}[Regularity of BVc-sets]
+For $E\in \BV_c$ we define the regularity
+\begin{align*}
+	r(E)=\begin{cases}
+		\frac{\abs{E}}{\diam(E)P(E)} &\text{ if }\abs{E}>0 \\
+		0 &\text{ else}
+	\end{cases}
+\end{align*}
+\end{definition}
+
+\begin{definition}[isoparametric]
+We call $E\in\BV_c$ $\e$-isoparametric if for all $T\in\BV$
+\begin{align*}
+	\min\brk[c]*{P(E\cap T),P(E\setminus T)}\leq \frac{P(T,\text{in }E)}{\e}\,.
+\end{align*}
+\end{definition}
+
+We now show that cubes are in fact $\e$-isoparametric for some small $\e$ which only depends on the dimension $n$.
+\begin{proposition}[Cubes are $\e$-isoparametric]
+Every cube $C\subseteq\R^n$ is $\e$-isoparametric for $\e<\kappa$ for some $\kappa$ which depends only on the dimension.
+\end{proposition}
+\begin{proof}
+Let $T\in\BV$
+\end{proof}
+
+\begin{definition}[Gauge]
+We call a set thin if it is $\sigma$-finite w.r.t.\ $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R^n_{>0}$ for which $\brk[c]{\delta=0}$ is called a gauge.
+\end{definition}
+
+\begin{definition}[Partitions]
+Let $\delta$ be a gauge and $\e>0$.
+We call a partition
+\begin{align*}
+	\brk[c]*{(E_1,x_1),\dots, (E_p,x_p)}
+\end{align*}
+with disjoint sets $E_i\in\BV_c$ and points $x_i\in\R^n$
 \begin{itemize}
-	\item gauge $\delta$
-	\item $\e$-regular $\delta$-fine partition
-	\item charge
-	\item Bounded variation set
-	\item the Pfeffer-R-integral
-	\item the R*-integral
+	\item $\e$-regular if $r(E_i\cup\brk[c]{x_i})>\e$ for all $i$
+	\item strongly $\e$-regular if it is $\e$-regular, $E_i$ is $\e$-isoperimetric and $x_i\in\closure_*E_i$ for all $i$
+	\item $\delta$-fine if $E_i\subseteq B_{\delta(x_i)}(x_i)$ for all $i$
 \end{itemize}
+\end{definition}
 
-\section{Some proof}
+\begin{definition}[Topology on $\BV_c$]
+We say a sequence $A\colon\N\to \BV_c$ converges to $A_*$ if there exists a compact $K\subseteq\R^n$ such that $A_k\subseteq K$, $\sup_kP(A_k)<\infty$ and $\abs{A_*\symmDiff A_k}\to0$ where $\Delta$ denotes the symmetric difference.
+\end{definition}
 
-Additivity or well-definedness.
+\begin{definition}[Charge]
+A function $F\colon \BV_c\to\R$ is called
+\begin{itemize}
+	\item finitely additive if $F(A\sqcup B) =F(A)+F(B)$ for all $A,B\in\BV_c$ disjoint.
+	\item continuous if $A_k\to A_*$ implies that $F(A_k)\to F(A_*)$.
+	\item a Charge if it is finitely additive and continuous
+\end{itemize}
+\end{definition}
+
+One sees from the definition that charges form a linear space.
+We now give some examples of charges.
+
+\begin{claim}[Volume integrals as charges]
+Let $f\in L^1_{loc}(\R^n)$ then the indefinite integral of $f$
+\begin{align*}
+	F\colon A\mapsto \int_Af\dif\cL^n
+\end{align*}
+is a charge.
+\end{claim}
+\begin{proof}
+$F$ is finitely additive. Let $A_k\to A_*$ then we have by the dominated convergence theorem with majorant $\one_Kf$ that
+\begin{align*}
+	\int_{A_k}f\dif\cL^n\xrightarrow{k\to\infty}\int_{A_*}f\dif\cL^n
+\end{align*}
+and hence $F$ is a charge.
+\end{proof}
+
+In particular it follows from this example that every measure which is absolutely continuous w.r.t.\ the Lebesgue measure is a charge.
+A further example is given by
+
+\begin{claim}[Fluxes are charges]
+For $E\in\BV$  and $w\in C(\closure(E);\R^n)$ we have that the flux of $w$
+\begin{align*}
+	F\colon A\mapsto \int_{\partial_*(A\cap E)}w\cdot\nu_{A\cap E}\dif \cH^{n-1}
+\end{align*}
+is a charge. Here $\nu_{A\cap E}\colon \partial_*(A\cap E)\to S^{n-1}\subseteq\R^n$ denotes the outer unit normal.
+\end{claim}
+\begin{proof}
+We have that $F$ is finitely additive. 
+\end{proof}
+
+\begin{definition}
+A function $f\colon \R^n\to\R$ is called $R^*$-integrable with respect to a charge $G$ if there is a charge $F$, s.t.\ for all $\e>0$ there exists a gauge $\delta$ such that
+\begin{align*}
+	\sum_{i=1}^p\abs{f(x_i)G(E_i)-F(E_i)}<\e
+\end{align*}
+for each strongly $\e$-regular $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dots,(E_p,x_p)}$. We call $F$ an indefinite integral of $f$ with respect to $G$ and write
+\begin{align*}
+	F=\int^* f\dif G\,.
+\end{align*}
+\end{definition}
+
+We now would like to prove the uniqueness of the integral. For this we require
+\begin{lemma}[Density of cubes]\label{le:DensityCubes}
+Let $F$ be a charge such that $F(C)=0$ for all cubes $C\subseteq\R^n$. Then $F=0$.
+\end{lemma}
+\begin{proof}
+See \cite[Lemma 2.4]{Pfe2016}.
+\end{proof}
+
+\begin{lemma}\label{le:DisjointCube}
+Let $C$ be a cube $F\geq0$ be a charge, $\e>0$ and $\delta$ be a gauge. Then there exist disjoint dyadic cubes $C_i$ and points $x_i\in C_i$ such that $\diam(C_i)<\delta(x_i)$ for all $i$ and
+\begin{align*}
+	f\brk*{A\setminus\bigcup_iC_i}<\e
+\end{align*}
+\end{lemma}
+\begin{proof}
+See \cite[Lemma 2.6.4]{Pfe2001}.
+\end{proof}
+
+\begin{claim}
+The integral is unique.
+\end{claim}
+\begin{proof}
+We follow \cite[Proposition 3.4]{Pfe2016}. Let $F_1$ and $F_2$ be $R_*$-integrals of $f$ w.r.t.\ $G$. We set $H=\abs{F_1-F_2}$. Now choose a cube $C\subseteq \R^n$ and $0<\e$ s.t.\ $C$ is $\e$-isoparametric. By Lemma \ref{le:DisjointCube} there exist pairwise disjoint dyadic cubes $E_i\subseteq C$ such that
+\begin{align*}
+	H\brk*{C\setminus \bigcup_iE_i}<\e
+\end{align*}
+and $\diam(E_i)<\delta(x_i)$ for $x_i\in E_i$ and $i\in\brk[c]{1,\dots,q}$. It then follows that
+\begin{align*}
+	H(C)
+	&\leq H\brk*{C\setminus \bigcup\cP}+H\brk*{\bigcup\cP} \\
+	&\leq\e+\abs*{\sum_i\brk*{F_1(E_i)-F_2(E_i)}} \\
+	&\leq \e+\sum_i\abs*{F_1(E_i)-f(x_i)G(E_i)} +\sum_i\abs*{f(x_i)G(E_i)-F_2(E_i)} \\
+	&\leq 3\e\xrightarrow{\e\to0}0
+\end{align*}
+and thus $H(C)=0$. Since $C$ was an arbitrary cube it follows from 
+Lemma \ref{le:DensityCubes} on the density of cubes that $H=0$ and hence $F_1=F_2$.
+
+\end{proof}
+
+\begin{claim}[Linearity of the integral]
+Let $f_1,f_2$ be $R^*$-integrable and $a\in\R$. Then $f+ag$ is also integrable and
+\begin{align*}
+	\int f_1\dif^*G + \int f_2\dif^*G=\int f_1+\alpha f_2\dif^*G\,.
+\end{align*}
+\end{claim}
+
+\begin{proof}
+We write $F_i=\int f_i\dif^*G$. then we have that for all $\e>0$ there exist gauges $\delta_i$ such that
+\begin{align*}
+	\sum_j\abs*{f_i(x_j)G(E_j)-F_i(E_j)}<\e
+\end{align*}
+for each strongly $\e$-regular $\delta$-fine partition $\brk[c]{(E_1,x_1),\dots,(E_p,x_p)}$. Since the space of charges is a linear space we have that also $F_1+\alpha F_2$ is a charge.
+If we now set $\delta=\min_i\delta_i$ then we obtain that
+\begin{align*}
+	&\sum_j\abs*{(f_1+\alpha f_2)(x_j)G(E_j)-(F_1+\alpha F_2)(E_j)} \\
+	&\leq \sum_j\abs*{f_1(x_j)G(E_j)-F_1(E_j)}+\abs{\alpha}\sum_j\abs*{f_2(x_j)G(E_j)-F_2(E_j)} \\
+	&\leq (1+\abs{\alpha})\e
+\end{align*}
+for every strongly $\e$-regular $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dots,(E_p,x_p)}$. Thus $f_1+\alpha f_2$ is integrable with integral $F_1+\alpha F_2$.
+\end{proof}
 
 
-\section{Gauss-Green}
+\section{What this integral is good for?}
 
-State Gauss-Green and some outlook on what one can do with the integral.
+In \cite[Proposition 3.5]{Pfe2016} it is stated that integral generalises the Lebesgue integral on $\R^n$.
 
+\begin{proposition}[Generalisation of the Lebesgue integral on $\R^n$]
+Each Lebesgue-integrable function is also $R_*$-integrable and the integrals conincide.
+\end{proposition}
+
+\noindent The integral generalises the Henstock-Kurzweil integral on $\R$.
+It is shown in \cite[Proposition 3.6]{Pfe2016} that
+
+\begin{proposition}[Generalisation of the Henstock-Kurzweil integral on $\R$]
+A function $f\colon\R\to\R$ is Denjoy-Perron integrable on a compact $A\subseteq\R$ if it is $R^*$-integrable and the two integrals coincide on $A$.
+\end{proposition}
+
+\noindent We now turn back to the divergence theorem. For this we need some additional conditions on our sets.
+
+\begin{definition}[Admissable sets]
+We call a set admissable if $\interiour_*A\subseteq A\subseteq \closure_*A$ and $\partial A$ is compact. The set of admissible BV-sets is denoted by $\ABV$.
+\end{definition}
+
+\noindent It is shown in \cite[Corollary 3.18]{Pfe2016} that for admissable sets the $R_*$-integral and the classical Pfeffer integral which is defined in \cite[Pfe1992] coincide. That is
+
+\begin{proposition}[Generalisation of the Pfeffer-Integral on $\R^n$]
+Let $A\in\ABV$. Then each Pfeffer-integrable function is also $R_*$-integrable and the integrals coincide on $A$.
+\end{proposition}
+
+\noindent Since a very general version of the divergence theorem holds for Pfeffer-integrals one can obtain that
+
+\begin{theorem}[Divergence theorem]
+Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipshitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
+\begin{align*}
+	\int_A^*\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
+\end{align*}
+where $\nu_A\colon \partial_* A\to S^{n-1}\subseteq\R^n$ is the unit normal to $A$.
+\end{theorem}
 
 \section*{Bibliography}
 \nocite{*}
-\printbibliography
+\printbibliography[heading=none]
 
 \end{document}
