@@ -171,15 +171,16 @@ We call $E\in\BV_c$ $\e$-isoparametric if for all $T\in\BV$
 \end{definition}
 
 We now show that cubes are in fact an example of $\e$-isoparametric for some small $\e$ which only depends on the dimension $n$.
+\newconstant{cubeIsoparam}
 \begin{proposition}[Cubes are $\e$-isoparametric]
-Every cube $C\subseteq\R^n$ is $\e$-isoparametric for $\e<\kappa$ for some $\kappa$ which depends only on the dimension.
+There exists a $\useconstant{cubeIsoparam}>0$ which depends only on the dimension s.t.\ every cube $C\subseteq\R^n$ is $\e$-isoparametric for every $\e<\useconstant{cubeIsoparam}$.
 \end{proposition}
 \begin{proof}
 %Let $T\in\BV$
 \end{proof}
 
 \begin{definition}[Gauge]
-We call a set thin if it is $\sigma$-finite w.r.t.\ $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R^n_{>0}$ for which $\brk[c]{\delta=0}$ is called a gauge.
+We call a set thin if it is $\sigma$-finite w.r.t.\ $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R^n_{>0}$ for which $\brk[c]{\delta=0}$ is thin is called a gauge.
 \end{definition}
 
 \begin{definition}[Partitions]
@@ -260,15 +261,15 @@ Now define $\e_i>0$ such that
 	\e_i\leq \frac{\e}{2^i}\qquad\text{ and }\qquad\e_i\leq \frac{1}{\useconstant{coveringLemma}t_i}
 \end{align*}
 and $C\subseteq B_{1/\e_i}(0)$ for all $i$. The reason for the choice of $\e$ in this way will become clear later.
-By the alternative characterisation of charges there exist $\theta_i$ such that $\abs{F(A)}<\e_i$ for each $B\in\BV_c$ such that $A\subseteq C$, $P(A)<1/\e_i$ and $\abs{A}<\theta_i$ for all $i$.
-By Proposition \ref{pr:coveringLemma} there exist families $\cK_i$ of dyadic cubes with diameters less than $ $ and 
+By the alternative characterisation of charges there exist $\theta_i$ such that $\abs{F(A)}<\e_i$ for each $A\in\BV_c$ such that $A\subseteq C$, $P(A)<1/\e_i$ and $\abs{A}<\theta_i$ for all $i$.
+By Proposition \ref{pr:coveringLemma} there exist families $\cK_i$ of dyadic cubes with diameters less than $\theta_i\e_i$, 
 \begin{align*}
 	T_i\subseteq \interiour\bigcup\cK_i
 	\qquad\text{ and }\qquad
-	\sum_{K\in\cK}\diam(K)^{n-1}<\useconstant{coveringLemma} c
+	\sum_{K\in\cK}\diam(K)^{n-1}<\useconstant{coveringLemma} t_i\,.
 \end{align*}
 
-Let $\cK$ be a nonoverlapping subfamily of $\cK_0=\bigcup_i\cK$ such that $\bigcup\cK=\bigcup\cK_0$. Define a function $\sigma\colon C\to \R_{>0}$ by
+Let $\cK$ be a disjoint subfamily of $\cK_0=\bigcup_i\cK$ such that $\bigcup\cK=\bigcup\cK_0$. Define a function $\sigma\colon C\to \R_{>0}$ by
 \begin{align*}
 	\sigma(x)=\begin{cases}
 		\diam(K)&\text{ if }x\in K\cap T\text{ for a }K\in\cK\\
@@ -276,18 +277,19 @@ Let $\cK$ be a nonoverlapping subfamily of $\cK_0=\bigcup_i\cK$ such that $\bigc
 	\end{cases}
 \end{align*}
 By Cousin's Lemma \ref{le:Cousin} there exists a dyadic $\sigma$-fine partition $\cC=\brk[c]*{(C_1,x_1),\dots,(C_p,x_p)}$ of $C$.
-By reordering we can set $x_1,\dots,x_q$ to be precisely those $x_i$ for which $x_i\notin T$. We now observe that by construction we have that $x_j\in T$ implies that there exists a cube $K\in\cK_i$ such that $C_i\subseteq K$. We now do a reordering of indices such that
+ We now do a reordering of indices such that
 \begin{align*}
-	\cC=\Big\{\underbrace{\brk*{C_1,x_1},\dots,\brk*{C_q,x_q}}_{x_i\notin T\text{ for }1\leq i\leq q}\quad,\quad \underbrace{\brk*{C_{k_1+1},x_{k_1+1}},\dots,\brk*{C_{k_2},x_{k_2}}}_{\substack{C_i\subseteq K\text{ for some } \\ K\in\cK_1\text{ for all } \\ q=k_1< i\leq k_2}}\qquad\qquad&\\
-	\qquad\qquad,\qquad\dots\qquad,\quad \underbrace{\brk*{C_{k_m+1},x_{k_m+1}},\dots,\brk*{C_{k_{m+1}},x_{k_{m+1}}}}_{\substack{C_i\subseteq K\text{ for some } \\ K\in\cK_{m}\text{ for all } \\ k_m< i\leq k_{m+1}=p}}\Big\}&
+	\cC=\Big\{\underbrace{\brk*{C_1,x_1},\dots,\brk*{C_q,x_q}}_{C_i\not\subseteq\bigcup\cK\text{ for }1\leq i\leq q}\quad,\quad \underbrace{\brk*{C_{k_1+1},x_{k_1+1}},\dots,\brk*{C_{k_2},x_{k_2}}}_{\substack{C_i\subseteq \bigcup\cK_1 \text{ for all } \\ q=k_1< i\leq k_2}}\qquad\qquad&\\
+	\qquad\qquad,\qquad\dots\qquad,\quad \underbrace{\brk*{C_{k_m+1},x_{k_m+1}},\dots,\brk*{C_{k_{m+1}},x_{k_{m+1}}}}_{\substack{C_i\subseteq \cK_m\setminus \brk*{\brk*{\bigcup\cK_1}\cup\dots\cup\brk*{\bigcup\cK_{m-1}}}\\ \text{ for all }  k_m< i\leq k_{m+1}=p}}\Big\}&\,.
 \end{align*}
-We now have by the covering Proposition \ref{le:coveringLemma} that
+We set $\cP=\brk[c]*{(C_1,x_1),\dots,(C_1,x_1)}$. Since by construction we have that $x_j\in T$ implies that there exists a cube $K\in\cK_i$ such that $C_i\subseteq K$ it follows that $\cP$ is a $\delta$-fine dyadic partition.
+We now have by Proposition \ref{pr:coveringLemma} and the choice of $\e_i$ that
 \begin{align*}
 	P\brk4{\bigcup_{k_i<k\leq k_{i+1}}C_k}
 	\leq \sum_{K\in\cK_i}P(K)
 	\leq \frac{1}{\e_i}
 \end{align*}
-and further
+and it thus follows further that
 \begin{align*}
 	\abs4{\bigcup_{k_i<k\leq k_{i+1}}C_k}
 	\leq \abs*{\bigcup\cK_i}
@@ -308,25 +310,25 @@ so
 The integral is unique.
 \end{claim}
 \begin{proof}
-We follow \cite[Proposition 3.4]{Pfe2016}. Let $F_1$ and $F_2$ be $R_*$-integrals of $f$ w.r.t.\ $G$. We set $H=\abs{F_1-F_2}$. Now choose a cube $C\subseteq \R^n$ and $0<\e$ s.t.\ $C$ is $\e$-isoparametric. By Lemma \ref{le:DisjointCube} there exist pairwise disjoint dyadic cubes $E_i\subseteq C$ such that
+We follow \cite[Proposition 3.4]{Pfe2016}. Let $F_1$ and $F_2$ be $R_*$-integrals of $f$ w.r.t.\ $G$. We set $H=\abs{F_1-F_2}$. Now choose a cube $C\subseteq \R^n$ and $0<\e<\useconstant{cubeIsoparam}$. Let $\delta$ be the corresponding gauge to $\e$ in the definition of the integral. By Lemma \ref{le:DisjointCube} there exists a $\delta$-fine dyadic partition $\cP=\brk[c]*{(C_1,x_1),\dots,(C_q,x_q)}$ such that
 \begin{align*}
-	H\brk*{C\setminus \bigcup_iE_i}<\e
+	\abs{H}\brk*{C\setminus \bigcup\cP}<\e\,.
 \end{align*}
-and $\diam(E_i)<\delta(x_i)$ for $x_i\in E_i$ and $i\in\brk[c]{1,\dots,q}$. It then follows that
+It then follows that
 \begin{align*}
-	H(C)
-	&\leq H\brk*{C\setminus \bigcup\cP}+H\brk*{\bigcup\cP} \\
-	&\leq\e+\abs*{\sum_i\brk*{F_1(E_i)-F_2(E_i)}} \\
-	&\leq \e+\sum_i\abs*{F_1(E_i)-f(x_i)G(E_i)} +\sum_i\abs*{f(x_i)G(E_i)-F_2(E_i)} \\
+	\abs{H(C)}
+	&\leq \abs{H}\brk*{C\setminus \bigcup\cP}+\abs{H}\brk*{\bigcup\cP} \\
+	&\leq\e+\abs*{\sum_i\brk*{F_1(C_i)-F_2(C_i)}} \\
+	&\leq \e+\sum_i\abs*{F_1(C_i)-f(x_i)G(C_i)} +\sum_i\abs*{f(x_i)G(C_i)-F_2(C_i)} \\
 	&\leq 3\e\xrightarrow{\e\to0}0
 \end{align*}
-and thus $H(C)=0$. Since $C$ was an arbitrary cube it follows from 
+and thus $H(C)=0$. Since $C$ was an arbitrary dyadic cube it follows from 
 Lemma \ref{le:DensityCubes} on the density of cubes that $H=0$ and hence $F_1=F_2$.
 
 \end{proof}
 
 \begin{claim}[Linearity of the integral]
-Let $f_1,f_2$ be $R_*$-integrable and $a\in\R$. Then $f+ag$ is also integrable and
+Let $f_1,f_2$ be $R_*$-integrable and $a\in\R$. Then $f_1+af_2$ is also integrable and
 \begin{align*}
 	(R^*)\int f_1\dif G + (R^*)\int f_2\dif G=(R^*)\int f_1+\alpha f_2\dif G\,.
 \end{align*}
@@ -360,7 +362,7 @@ Each Lebesgue-integrable function is also $R_*$-integrable and the integrals con
 It is shown in \cite[Proposition 3.6]{Pfe2016} that
 
 \begin{proposition}[Generalisation of the Henstock-Kurzweil integral on $\R$]
-A function $f\colon\R\to\R$ is Denjoy-Perron integrable on a compact $A\subseteq\R$ if it is $R_*$-integrable and the two integrals coincide on $A$.
+A function $f\colon\R\to\R$ is Denjoy-Perron integrable on a compact $A\subseteq\R$ iff it is $R_*$-integrable and the two integrals coincide on $A$.
 \end{proposition}
 
 \noindent We now turn back to the divergence theorem. For this we need some additional conditions on our sets.
@@ -371,14 +373,24 @@ We call a set admissable if $\interiour_*A\subseteq A\subseteq \closure_*A$ and 
 
 \noindent It is shown in \cite[Corollary 3.18]{Pfe2016} that for admissable sets the $R_*$-integral and the classical Pfeffer integral which is defined in \cite[Pfe1992] coincide. That is
 
-\begin{proposition}[Generalisation of the Pfeffer-Integral on $\R^n$]
+\begin{proposition}[Generalisation of the Pfeffer-Integral on $\R^n$]\label{pr:GeneralisationPfeffer}
 Let $A\in\ABV$. Then each Pfeffer-integrable function is also $R_*$-integrable and the integrals coincide on $A$.
 \end{proposition}
 
-\noindent Since a very general version of the divergence theorem holds for Pfeffer-integrals one can obtain that
+\noindent We now turn our attention to the divergence theorem which is one of the major motivations for the Pfeffer integral and hence also the $R^*$-integral.
+The following definition is from \cite{Pfe1991}.
+We say that $w\in C(\closure(A);\R^n)$ such that $w$ is pointwise Lipschitz on a set $E\subseteq A$ if we have that
+\begin{align*}
+	\limsup_{y\to x}\frac{\abs*{w(x)-w(y)}}{\abs{x-y}}<\infty
+\end{align*}
+for all $x\in E$ where $w$ was possibly extended in a neighbourhood around $x$. Then by Stepanoff's theorem it follows that $w$ is differentiable almost everywhere on $E$. Hence it is possible to define the divergence
+\begin{align*}
+	\diver w=\sum_{i=1}^n\partial_iw_i
+\end{align*}
+almost everywhere on $E$. It is shown in \cite[Lemma 5.16]{Pfe1991} that $\diver w$ is well defined, i.e.\ it does not depend on the extension around a neighbourhood. With this we obtain from \cite[Theorem 5.19]{Pfe1991} and Proposition \ref{pr:GeneralisationPfeffer} that
 
 \begin{theorem}[Divergence theorem]
-Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipshitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
+Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipschitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
 \begin{align*}
 	(R^*)\int_A\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
 \end{align*}
