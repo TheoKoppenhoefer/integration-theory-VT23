@@ -6,7 +6,8 @@
 
 \subject{Specialised course in integration theory, VT23}
 \title{The Malý-Pfeffer integral}
-\author{Theo Koppenhöfer}
+\author{\url{https://github.com/TheoKoppenhoefer/integration-
+theory-VT23}}
 \date{Lund \\[1ex] \today}
 
 
@@ -25,22 +26,30 @@
 \frame[plain]{\titlepage}
 
 % Frame 3
-%\frame[plain]{ \frametitle{Table of contents} \tableofcontents }
+\frame[plain]{ \frametitle{Table of contents} \tableofcontents }
 
 \section{Introduction}
 \begin{frame}
+	\frametitle{Introduction}
 	Given a suitable set $A\subseteq\R^n$ and suitable $w\colon\R^n\to\R^n$ the divergence theorem states that
 	\begin{align*}
 		\int_A\diver w\dif\cL^n=\int_{\partial A}w\cdot\nu_A\dif\cH^{n-1}
 	\end{align*}
 	Here $\nu_A\colon \partial A\to S^{n-1}\subseteq\R^n$ is the exteriour unit normal and $\diver$ denotes the divergence.
+	\begin{itemize}
+		\item 
+		Generalising the LHS leads to a formulation involving the Pfeffer integral which is defined in \cite{Pfe1991}.
+		\item
+		The Pfeffer (and the Henstock-Kurzweil) integral was generalised in \cite{Pfe2016} which I call the Malý-Pfeffer integral. It is the topic of this presentation.
+	\end{itemize}
 \end{frame}
 
 \section{Definition of the integral}
 
 \begin{frame}
+	\frametitle{Definition of the integral}
 	\begin{definition}[essential interiour, exteriour, boundary]
-	We calle the set of density points in $A$ essential interiour $\interiour_*A$ of $A$.
+	We call the set of density points of $A$ essential interiour $\interiour_*A$ of $A$.
 	The essential exteriour $\exteriour_*A=\interiour_*A^\complement$ is the essential interiour of the complement of $A$. The essential boundary is given by
 	\begin{align*}
 		\partial_*A=\R^n\setminus(\interiour_*A\cup\exteriour_*A)\,.
@@ -50,7 +59,7 @@
 
 \begin{frame}
 	\begin{definition}[relative perimiter]
-	We define the relative perimiter of a measurable set $E$ to be 
+	We define the relative perimeter of a measurable set $E$ to be 
 	\begin{align*}
 		P(E,\text{in }A)=\cH^{n-1}\brk*{\partial_*E\cap \interiour_*A}\,.
 	\end{align*}
@@ -76,9 +85,6 @@
 		\item a charge if it is finitely additive and continuous
 	\end{itemize}
 	\end{definition}
-\end{frame}
-
-\begin{frame}
 	\begin{Example}[Indefinite Lebesgue-Integrals are charges]
 	Let $f\in L^1_{loc}(\R^n)$ then the indefinite integral of $f$
 	\begin{align*}
@@ -86,6 +92,17 @@
 	\end{align*}
 	is a charge.
 	\end{Example}
+\end{frame}
+
+\begin{frame}
+	\begin{definition}[Charge]
+	A function $F\colon \BV_c\to\R$ is called
+	\begin{itemize}
+		\item finitely additive if $F(A\sqcup B) =F(A)+F(B)$ for all disjoint $A,B\in\BV_c$.
+		\item continuous if $A_k\to A_*$ implies that $F(A_k)\to F(A_*)$.
+		\item a charge if it is finitely additive and continuous
+	\end{itemize}
+	\end{definition}
 	\begin{Example}[Fluxes are charges]
 	For $E\in\BV$  and $w\in C(\closure(E);\R^n)$ we have that the flux of $w$
 	\begin{align*}
@@ -105,14 +122,14 @@
 		\end{cases}
 	\end{align*}
 	\end{definition}
-	\begin{definition}[$\e$-isoparametric]
-	We call $E\in\BV_c$ $\e$-isoparametric if for all $T\in\BV$
+	\begin{definition}[$\e$-isoperimetric]
+	We call $E\in\BV_c$ $\e$-isoperimetric if for all $T\in\BV$
 	\begin{align*}
 		\min\brk[c]*{P(E\cap T),P(E\setminus T)}\leq \frac{P(T,\text{in }E)}{\e}\,.
 	\end{align*}
 	\end{definition}
 	\begin{definition}[Gauge]
-	We call a set thin if it is $\sigma$-finite w.r.t.\ $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R^n_{>0}$ for which $\brk[c]{\delta=0}$ is thin is called a gauge.
+	We call a set thin if it is $\sigma$-finite w.r.t.\ $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R_{\geq 0}$ for which $\brk[c]{\delta=0}$ is thin is called a gauge.
 	\end{definition}
 \end{frame}
 
@@ -125,7 +142,7 @@
 	\end{align*}
 	a partition of the set $\bigcup\cP=\bigcup_iE_i$ if $E_i\in\BV_c$ are disjoint sets and $x_i\in\R^n$. A partition is called
 	\begin{itemize}
-		\item dyadic if $E_i$ is a dyadic cube and $x_i\in E_i$ for all $i$
+		\item dyadic if $E_i$ is a dyadic cube and $x_i\in \closure(E_i)$ for all $i$
 		\item $\e$-regular if $r(E_i\cup\brk[c]{x_i})>\e$ for all $i$
 		\item strongly $\e$-regular if it is $\e$-regular, $E_i$ is $\e$-isoperimetric and $x_i\in\closure_*E_i$ for all $i$
 		\item $\delta$-fine if $E_i\subseteq B_{\delta(x_i)}(x_i)$ for all $i$
@@ -134,39 +151,98 @@
 \end{frame}
 
 \begin{frame}
-	\begin{definition}[$R^*$-integral]
-	A function $f\colon \R^n\to\R$ is called $R^*$-integrable with respect to a charge $G$ if there is a charge $F$, s.t.\ for all $\e>0$ there exists a gauge $\delta$ such that
+	\begin{definition}[$R_*$-integral]
+	A function $f\colon \R^n\to\R$ is called $R_*$-integrable with respect to a charge $G$ if there is a charge $F$, s.t.\ for all $\e>0$ there exists a gauge $\delta$ such that
 	\begin{align*}
 		\sum_{i=1}^p\abs{f(x_i)G(E_i)-F(E_i)}<\e
 	\end{align*}
 	for each strongly $\e$-regular $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dots,(E_p,x_p)}$. We call $F$ an indefinite integral of $f$ with respect to $G$ and write
 	\begin{align*}
-		F=(R^*)\int f\dif G\,.
+		F=(R_*)\!\!\int f\dif G\,.
 	\end{align*}
 	\end{definition}
 \end{frame}
 
 
-\section{Uniqueness of the integral}
+\section{Uniqueness and linearity}
+\begin{frame}
+	\frametitle{Uniqueness and linearity}
+	\begin{definition}[Nice dyadic cubes]
+	Let $\sigma\colon \closure(C)\to\R_{>0}$. A dyadic cube $C$ is called nice if there exist a dyadic $\sigma$-fine partition of $C$.
+	A dyadic cube which is not nice is called faulty.
+	\end{definition}
+	
+	\begin{lemma}[Cousin]\label{le:Cousin}
+	All dyadic cubes are nice.
+	\end{lemma}
+\end{frame}
+
+\begin{frame}
+	\begin{proof}
+	Assume a dyadic cube $C=C^1$ is faulty and has diameter $r$. Then $C^1$ can be written as the disjoint union $C=\bigsqcup_iC_i$ of dyadic cubes $C_i$ with diameters less than $r/2$. Since $C$ is faulty at least one of the $C_i$, say $C^2=C_i$ is also faulty. Inductively we obtain a sequence of nested faulty dyadic cubes $C^j$ with diameters less than $r/2^j$. Thus
+	\begin{align*}
+		\bigcap_j\closure\brk*{C^j}=\brk[c]{x}
+	\end{align*}
+	for some $x\in \closure(C)$. Let $j$ be s.t.\ $r/2^j<\sigma(x)$. Then we have that $\diam(C^j)<\sigma(x)$ and $x\in C^j$ so $C^j$ is nice. This is a contradiction.
+	\end{proof}
+\end{frame}
+
+\begin{frame}
+	One uses this to prove the following result
+	\begin{lemma}[Almost covering of a cube]\label{le:DisjointCube}
+	Let $C$ be a dyadic cube, $F$ be a charge, $\e>0$ and $\delta$ be a gauge. Then there exists a $\delta$-fine dyadic partition $\cP=\brk[c]*{(C_1,x_1),\dots,(C_q,x_q)}$ such that
+	\begin{align*}
+		\abs{F}\brk*{C\setminus\bigcup\cP}<\e\,.
+	\end{align*}
+	\end{lemma}
+\end{frame}
+
 \begin{frame}
 	\begin{proposition}
 	The integral is unique.
 	\end{proposition}
+	\begin{proof}
+	\vspace*{0.5cm}
+	\hspace*{1cm}
+	\centering
+	\scalebox{0.8}{
+	\centering
+	\input{../Figures/UniquenessProof}
+	}
+	\end{proof}
 \end{frame}
 
 \begin{frame}
 	\begin{proposition}[Linearity of the integral]
-	Let $f_1,f_2$ be $R_*$-integrable and $a\in\R$. Then $f_1+af_2$ is also integrable and
+	Let $f_1,f_2$ be $R_*$-integrable and $\alpha\in\R$. Then $f_1+\alpha f_2$ is also $R_*$-integrable and
 	\begin{align*}
-		(R^*)\int f_1\dif G + (R^*)\int f_2\dif G=(R^*)\int f_1+\alpha f_2\dif G\,.
+		(R_*)\!\!\int f_1\dif G + (R_*)\!\!\int \alpha f_2\dif G=(R_*)\!\!\int f_1+\alpha f_2\dif G\,.
 	\end{align*}
 	\end{proposition}
 \end{frame}
 
-\section{What the integral is good for}
 \begin{frame}
+	\begin{proof}
+	We write $F_i=(R_*)\!\!\int f_i\dif G$. then we have that for all $\e>0$ there exist gauges $\delta_i$ such that
+	\begin{align*}
+		\sum_j\abs*{f_i(x_j)G(E_j)-F_i(E_j)}<\e
+	\end{align*}
+	for each strongly $\e$-regular $\delta_i$-fine partition $\brk[c]{(E_1,x_1),\dots,(E_p,x_p)}$. Since the space of charges is a linear space we have that also $F_1+\alpha F_2$ is a charge.
+	If we now set $\delta=\min_i\delta_i$ then we obtain that
+	\begin{align*}
+		&\sum_j\abs*{(f_1+\alpha f_2)(x_j)G(E_j)-(F_1+\alpha F_2)(E_j)} \\
+		&\leq \sum_j\abs*{f_1(x_j)G(E_j)-F_1(E_j)}+\abs{\alpha}\sum_j\abs*{f_2(x_j)G(E_j)-F_2(E_j)} \\
+		&\leq (1+\abs{\alpha})\e
+	\end{align*}
+	for every strongly $\e$-regular $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dots,(E_p,x_p)}$. Thus $f_1+\alpha f_2$ is integrable with integral $F_1+\alpha F_2$.
+	\end{proof}
+\end{frame}
+
+\section{What this integral is good for}
+\begin{frame}
+	\frametitle{What this integral is good for}
 	\begin{proposition}[Generalisation of the Lebesgue integral on $\R^n$]
-	Each Lebesgue-integrable function is also $R_*$-integrable and the integrals conincide.
+	Each Lebesgue-integrable function is also $R_*$-integrable and the integrals coincide.
 	\end{proposition}
 	\begin{proof}
 	See \cite[Proposition 3.5]{Pfe2016}.
@@ -175,7 +251,7 @@
 
 \begin{frame}
 	\begin{proposition}[Generalisation of the Henstock-Kurzweil integral on $\R$]
-	A function $f\colon\R\to\R$ is Denjoy-Perron integrable on a compact $A\subseteq\R$ iff it is $R_*$-integrable and the two integrals coincide on $A$.
+	A function $f\colon\R\to\R$ is Henstock-Kurzweil integrable on a compact $A\subseteq\R$ iff it is $R_*$-integrable and the two integrals coincide on $A$.
 	\end{proposition}
 	\begin{proof}
 	See \cite[Proposition 3.6]{Pfe2016}.
@@ -184,7 +260,7 @@
 
 \begin{frame}
 	\begin{definition}[Admissable sets]
-	We call a set admissable if $\interiour_*A\subseteq A\subseteq \closure_*A$ and $\partial A$ is compact. The set of admissible $\BV$-sets is denoted by $\ABV$.
+	We call a set admissible if $\interiour_*A\subseteq A\subseteq \closure_*A$ and $\partial A$ is compact. The set of admissible $\BV$-sets is denoted by $\ABV$.
 	\end{definition}
 	
 	\begin{proposition}[Generalisation of the Pfeffer-Integral on $\R^n$]\label{pr:GeneralisationPfeffer}
@@ -194,9 +270,9 @@
 
 \begin{frame}
 	\begin{theorem}[Divergence theorem]
-	Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipschitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
+	Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is point-wise Lipschitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
 	\begin{align*}
-		(R^*)\int_A\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
+		(R_*)\!\!\int_A\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
 	\end{align*}
 	where $\nu_A\colon \partial_* A\to S^{n-1}\subseteq\R^n$ is the unit normal to $A$.
 	\end{theorem}
@@ -204,6 +280,16 @@
 
 
 \section{Summary}
+\begin{frame}
+	\frametitle{Summary}
+	\begin{itemize}
+		\item The construction is very similar to that of the Henstock-Kurzweil integral and involves $\delta$-fine partitions where $\delta$ is a gauge
+		\item One can prove that the integral is unique (using Cousin's Lemma and an 'almost covering Lemma')
+		\item The $R_*$-integral generalises the Pfeffer and the Lebesgue integral on $\R^n$
+		\item It generalises the Henstock-Kurzweil integral on $\R$
+		\item One can formulate a very general version of the divergence theorem for this integral
+	\end{itemize}
+\end{frame}
 
 \section*{Sources}
 
