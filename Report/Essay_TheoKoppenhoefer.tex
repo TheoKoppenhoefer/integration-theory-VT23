@@ -5,7 +5,7 @@
 %%%%% TITLE PAGE
 
 %\subject{, VT23}
-\title{ Essay for the specialised integration theory course, VT23 \\[1ex]
+\title{ Essay for the Specialised Course in Integration Theory, VT23 \\[1ex]
 	  \large The Malý-Pfeffer integral}
 %\subtitle{}
 \author{Theo Koppenhöfer}
@@ -22,45 +22,61 @@
 
 \section{Introduction}
 
+The following essay presents the $R_*$-integral defined in \cite{Pfe2016} as part of the course MATP39, Specialised Course in Integration Theory. We will refer to this integral also as the Malý-Pfeffer integral. First we will briefly motivate the integral. Then we give the construction of the integral. After that we show the uniqueness of the definition and the linearity of the integral. Then we state some facts regarding this integral to motivate why the integral is potentially interesting. Finally we give a conclusion regarding. The report and the presentation of this topic can be found online under \cite{Repository}
+
+
+\section{Motivation of the Malý-Pfeffer integral.}
+
 Given a suitable set $A\subseteq\R^n$ and suitable $w\colon\R^n\to\R^n$ the divergence theorem states that
-\begin{align*}
-	\int_A\diver w\dif\cL^n=\int_{\partial A}w\cdot\nu_A\dif\cH^{n-1}
-\end{align*}
-Here $\nu_A\colon \partial A\to S^{n-1}\subseteq\R^n$ is the exteriour unit normal and $\diver$ denotes the divergence. A very general formulation of the divergence theorem is presented in Pfeffer, the guass green theorem where the integral on the left hand side is formulated using the Pfeffer integral, referred to in \cite{Pfe2016} as the $R$-integral. This integral was generalised to the $R^*$-integral in \cite{Pfe2016}.
+\begin{align}
+	\int_A\diver w\dif\cL^n=\int_{\partial A}w\cdot\nu_A\dif\cH^{n-1}\label{eq:divergence}
+\end{align}
+Here $\nu_A\colon \partial A\to S^{n-1}\subseteq\R^n$ is the exterior unit normal, $\diver$ denotes the divergence, $\cL^n$ refers to the $n$-dimensional Lebesgue measure and $\cH^{n-1}$ to the $(n-1)$-dimensional Hausdorff measure. A relatively general formulation of the divergence theorem was presented in \cite{Pfe1991} (1991) with few requirements on $w$. For this the integral on the left hand side of \eqref{eq:divergence} is formulated using the Pfeffer integral, referred to in \cite{Pfe2016} as the $R$-integral. This integral was relatively recently generalised to the $R_*$-integral in \cite{Pfe2016} (2016). It was shown that the $R_*$-integral generalises in a certain way the Lebesgue the Pfeffer and the Henstock-Kurzweil integral in a way that the general formulation of the divergence theorem still holds.
 
 \section{Definition of the integral}
 
-We begin by defining the essential interiour, exteriour and boundary.
+In this section we will define $\BV$-sets, charges, partitions and finally the Malý-Pfeffer integral.
+We begin by defining the essential interior, exterior and boundary.
 
-\begin{definition}[essential interiour, exteriour, boundary]
-We calle the set of density points in $A$ essential interiour $\interiour_*A$ of $A$.
-The essential exteriour $\exteriour_*A=\interiour_*A^\complement$ is the essential interiour of the complement of $A$. The essential boundary is given by
+\begin{definition}[essential interior, exterior, boundary]
+We call the set of density points of a set $A\subseteq\R^n$ essential interior $\interior_*(A)$ of $A$.
+The essential exterior $\exterior_*(A)=\interior_*\brk*{A^\complement}$ is the essential interior of the complement of $A$. The essential boundary is given by
 \begin{align*}
-	\partial_*A=\R^n\setminus(\interiour_*A\cup\exteriour_*A)\,.
+	\partial_*(A)=\R^n\setminus\brk*{\interior_*(A)\cup\exterior_*(A)}\,.
 \end{align*}
 \end{definition}
 
-\noindent Let now $x\in\interiour A$ then there exists $r>0$ such that $B_r(x)\subseteq A$. Since
+\noindent Let now $x\in\interior(A)$ be an interior point. Then there exists $r>0$ such that $B_r(x)\subseteq A$. Since we have
 \begin{align*}
-	\frac{\abs{A\cap B_r(x)}}{\abs{B_r(x)}}=1\xrightarrow{r\to0}1
+	\frac{\abs{A\cap B_r(x)}}{\abs{B_r(x)}}=1
 \end{align*}
-we have that $x$ is a density point and thus $x\in\interiour_*A$. Therefore we have that $\interiour A\subseteq \interiour_*A$. It then follows further that $\exteriour_*A\subseteq\exteriour A$ and also $\partial_*A\subseteq\partial A$. We can now introduce the notion of relative perimiter of a set 
+it follows that $x$ is a density point and thus $x\in\interior_*(A)$. Therefore we have that $\interior(A)\subseteq \interior_*(A)$. It then follows further that $\exterior_*(A)\subseteq\exterior(A)$ and also $\partial_*(A)\subseteq\partial (A)$. We can now introduce the notion of relative perimiter of a set 
 
 \begin{definition}[relative perimiter]
-We define the relative perimiter of a measurable set $E$ to be 
+We define the relative perimiter of a measurable set $E\subseteq\R^n$ with regard to a measurable set $A\subseteq\R^n$ to be 
 \begin{align*}
-	P(E,\text{in }A)=\cH^{n-1}\brk*{\partial_*E\cap \interiour_*A}\,.
+	P(E,\text{in }A)=\cH^{n-1}\brk*{\partial_*(E)\cap \interior_*(A)}\,.
 \end{align*}
-where $\cH^{n-1}$ denotes the $(n-1)$-dimensional Hausdorff-measure. For convenience we write $$P(E)=P(E,\text{in }\R^n)\,.$$
+where $\cH^{n-1}$ is the $(n-1)$-dimensional Hausdorff-measure. For convenience we write $$P(E)=P(E,\text{in }\R^n)\,.$$
 \end{definition}
 
-\noindent We can now proceed to define $\BV$-sets
+\begin{wrapfigure}{r}{0.3\textwidth}
+\centering
+\vspace{-1cm}
+\input{../Figures/Relative_Perimeter.pdf_tex}
+\caption{An illustration of the relative perimeter.}
+\label{fi:relativePerimeter}
+\end{wrapfigure}
+
+\noindent To illustrate this definition one can take as $A=H=\R_{>0}\times\R$ and $E=B_1(0)$ as shown in Figure \ref{fi:relativePerimeter}. Then one can see that $\partial_*(E)=\partial (E)$ and $\interior_*(A)=\interior(A)$ so we have in this particular case that $P(E,\text{in }A)=\pi$ and $P(E)=2\pi$.
+
+We proceed to define $\BV$-sets where the $\BV$ stands for bounded variation
 
 \begin{definition}[$\BV$-sets]
-A measurable set $A\subseteq\R^n$ is called a $\BV$-set if $ \abs{A}+P(A)<\infty$. We denote by $\BV$ the set of all $\BV$-sets and by $\BV_c$ the set of all bounded $\BV$-sets.
+A measurable set $A\subseteq\R^n$ is called a $\BV$-set if $ \abs{A}+P(A)<\infty$ where $\abs{\cdot}=\cL^n$ denotes the Lebesgue measure of a set. We denote by $\BV$ the set of all $\BV$-sets and by $\BV_c$ the set of all bounded $\BV$-sets.
 \end{definition}
 
-\noindent The reason for looking at $\BV$-sets is the following. Given a $\BV$-set $A$ there exists an exteriour normal $\nu_A\colon\partial_*A\to S^{n-1}\subseteq \R^n$ which is unique up to $\cH^{n-1}$-nullsets. One can now define a topology on the $\BV_c$-sets.
+\noindent The reason for looking at $\BV$-sets is the following. Given a $\BV$-set $A$ there exists an exterior normal $\nu_A\colon\partial_*A\to S^{n-1}\subseteq \R^n$ which is unique up to $\cH^{n-1}$-nullsets (see also \cite{Pfe2016}). One can now define a topology on the $\BV_c$-sets.
 
 \begin{definition}[Topology on $\BV_c$]
 We say a sequence $A\colon\N\to \BV_c$ converges to $A_*$ if there exists a compact $K\subseteq\R^n$ such that $A_k\subseteq K$, $\sup_kP(A_k)<\infty$ and $\abs{A_*\symmDiff A_k}\to0$ as $k\to\infty$. Here $A\symmDiff B=\brk*{B\setminus A}\sqcup \brk*{A\setminus B}$ denotes the symmetric difference.
@@ -78,13 +94,23 @@ A function $F\colon \BV_c\to\R$ is called
 \end{definition}
 
 \noindent One sees from the definition that charges form a linear space.
-It is shown in \cite[Corollary 1.10.4]{Pfe2001} that the space of dyadic cubes is dense in $\BV_c$. As a consequence we have that
+In the following we call a cube $C$ \textit{dyadic} if there exist  $l\in\Z^n$ and $k\in\Z$ such that
+\begin{align*}
+	C = 2^{-k}\prod_{i=1}^n\big[l_i,l_i+1\big)\subseteq\R^n\,.
+\end{align*}
+As a consequence of the density of dyadic cubes in $\BV_c$ we have the following proposition.
 
 \begin{lemma}[Density of cubes]\label{le:DensityCubes}
 Let $F$ be a charge such that $F(C)=0$ for all dyadic cubes $C\subseteq\R^n$. Then $F=0$.
 \end{lemma}
+\begin{proof}
+Since \cite[Corollary 1.10.4]{Pfe2001} states that the space of dyadic cubes is dense in $\BV_c$ there exists for given $A\in \BV_c$ a sequence $A\colon\N\to\BV_c$ of dyadic cubes for which $A_k\to A$ as $k\to\infty$. The claim then follows from
+\begin{align*}
+	0=F\brk*{A_k}\xrightarrow{k\to\infty}F\brk*{A_*}\,.
+\end{align*}
+\end{proof}
 
-We now give some important examples of charges.
+\noindent We now give some important examples of charges.
 
 \begin{claim}[Indefinite Lebesgue-Integrals are charges]
 Let $f\in L^1_{loc}(\R^n)$ then the indefinite integral of $f$
@@ -101,17 +127,22 @@ $F$ is finitely additive. Let $A_k\to A_*$ then we have by the dominated converg
 and hence $F$ is a charge.
 \end{proof}
 
-\noindent This example motivates why charges are used in the definition of the $R^*$-integral which generalises the Lebesgue-integral. Additionally it follows from this example and the Radon-Nikodym derivative (c.f.\ e.g.\ ??) that every measure which is absolutely continuous w.r.t.\ the Lebesgue measure is a charge. For the next example we require an alternative characterisation of charges.
+\noindent This example motivates why charges are used in the definition of the $R_*$-integral to extend the Lebesgue-integral. Additionally it follows from this example and the Radon-Nikodym derivative (see also \cite[Chapter 4.2]{Coh2013}) that every measure which is absolutely continuous with respect to the Lebesgue measure is a charge. For the next example we require an alternative characterisation of charges.
 
-\begin{lemma}[Alternative characterisation of charges]
-A finitely additive $F\colon \BV_c\to\R$ is a charge iff
-for every $\e>0$ then there exists $\theta>0$ such that $\abs{F(A)}<\e$ for all $A\in\BV_c$ such that $A\subseteq B_{1/\e}(0)$, $P(A)<1/\e$ and $\abs{A}\leq\theta$.
+\begin{lemma}[Alternative characterisation of charges]\label{le:alternativeCharge}
+Let $F\colon\BV_c\to\R$, then the following are equivalent
+\begin{enumerate}[label=(\roman*)]
+	\item
+	$F$ is a charge \label{li:charge}
+	\item
+	for every $\e>0$ then there exists a $\theta>0$ such that for all $A\in\BV_c$ with $A\subseteq B_{1/\e}(0)$, $P(A)<1/\e$ and $\abs{A}\leq\theta$ we have that $\abs{F(A)}<\e$. \label{li:alternative}
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-Assume the alternative characterisation holds. Let $A_k\to A_*$ in $\BV_c$ then for all $\e>0$ small such that $A_k\subseteq B=B_{1/\e}(0)$ and $P(A_k)<1/\e$ for all $k$. Choose $\theta>0$ according to the alternative characterisation. We set $B_k=A_*\setminus A_k$ then also $B_k\subseteq B$, $P(B_k)\leq 1/\e$ and $\abs{B_k}\leq\theta$ for $k$ large enough. Analogously for and $C_k=A_k\setminus A_*$ we have 
+Assume the alternative characterisation \ref{li:alternative} holds. Let $A_k\to A_*$ in $\BV_c$ and let $\e>0$ small such that $A_k\subseteq B=B_{1/\e}(0)$ and $P(A_k)<1/\e$ for all $k$. Choose $\theta>0$ according to the alternative characterisation. We set $B_k=A_*\setminus A_k$ then also $B_k\subseteq B$, $P(B_k)\leq 1/\e$ and $\abs{B_k}\leq\theta$ for $k$ large enough. Analogously for and $C_k=A_k\setminus A_*$ we have 
 $C_k\subseteq B$, $P(C_k)\leq 1/\e$ and $\abs{C_k}\leq\theta$ for $k$ large enough.
 Thus $\abs{F(B_k)}\leq\e$ for $k$ large enough and as $\e>0$ was arbitrarily small it follows that $F(B_k)\to0$ as $k\to\infty$. Analogously we have $F(C_k)\to0$ as $k\to\infty$. 
-No2 
+Now
 \begin{align*}
 	F\brk*{A_k}+F\brk*{A_*\setminus A_k} = F\brk*{A_k\cup A_*} = F\brk*{A_*}+F\brk*{A_k\setminus A_*}
 \end{align*}
@@ -119,15 +150,15 @@ implies
 \begin{align*}
 	F\brk*{A_k} = F\brk*{A_*}+F\brk*{C_k}-F\brk*{B_k}\xrightarrow{k\to\infty}F\brk*{A_*}
 \end{align*}
-so $F$ is a charge.
+so $F$ is a charge and \ref{li:charge} holds.
 
-Assume the alternative characterisation does not hold. Then there exists an $\e>0$ s.t.\ there exists a sequence of $A_k\in\BV_c$ such that $A_k\subseteq B_{1/\e}(0)$, $P(A_k)<1/\e$, $\abs{A_k}\leq 1/k$ and $\abs{F(A_k)}>\e$. But then $A_k\to0$ in $\BV_c$ and $\abs{F(A_k)}\not\to0$ in $\R$ and $F$ is not a charge.
+Assume the alternative characterisation \ref{li:alternative} does not hold. Then there exists an $\e>0$ and a sequence of $A_k\in\BV_c$ such that $A_k\subseteq B_{1/\e}(0)$, $P(A_k)<1/\e$, $\abs{A_k}\leq 1/k$ and $\abs{F(A_k)}>\e$. But then $A_k\to0$ in $\BV_c$ and $\abs{F(A_k)}\not\to0$ in $\R$ and $F$ is not a charge.
 \end{proof}
 
 A further example for a charge is given by fluxes.
 
 \begin{claim}[Fluxes are charges]
-For $E\in\BV$  and $w\in C(\closure(E);\R^n)$ we have that the flux of $w$
+For a set $E\in\BV$  and $w\in C(\closure(E);\R^n)$ we have that the flux of $w$
 \begin{align*}
 	F\colon A\mapsto \int_{\partial_*(A\cap E)}w\cdot\nu_{A\cap E}\dif \cH^{n-1}
 \end{align*}
@@ -135,10 +166,11 @@ is a charge. Here $\nu_{A\cap E}\colon \partial_*(A\cap E)\to S^{n-1}\subseteq\R
 \end{claim}
 \begin{proof}
 We follow \cite[Example 2.1.4]{Pfe2001}.
-We have that $F$ is finitely additive. Let $\e>0$ and $A\in\BV_c$ such that $P(A)<1/\e$, $A\subseteq B$ and $\abs{A}\leq \theta$ where $B=_{1/\e}(0)$ and $\theta>0$. Now choose $w\in C^1(\R^n;\R^n)$ such that $\abs{v-w}<\eta$ on $B\cap\closure E$. It then follows that
+We have that $F$ is finitely additive. Let $\e>0$ and $A\in\BV_c$ such that $P(A)<1/\e$, $A\subseteq B$ and $\abs{A}\leq \theta$ where $B=B_{1/\e}(0)$ and $\theta>0$. Let $\eta>0$ and choose $v\in C^1(\R^n;\R^n)$ such that $\abs{v-w}<\eta$ on $B\cap\closure E$. It then follows that
 \begin{align*}
 	\abs{F(A)}
-	&\leq \int_{\partial_*(A\cap E)}\abs{v-w}\dif\cH^{n-1}+\int_{A\cap E}\abs{\diver w}\dif\cL^n \\
+	&= \abs*{\int_{\partial_*(A\cap E)}(v-w)\cdot\nu_{A\cap E}\dif\cH^{n-1}+\int_{A\cap E}\diver v\dif\cL^n} \\
+	&\leq \int_{\partial_*(A\cap E)}\abs{v-w}\dif\cH^{n-1}+\int_{A\cap E}\abs{\diver v}\dif\cL^n \\
 	&\leq \eta P(A\cap E)+\abs{A\cap E}\norm{\diver w}_\infty \\
 	&\leq \eta \brk*{P(A)+P(B\cap E)}+\abs{A}\norm{\diver w}_\infty \\
 	&\leq \eta\brk*{\frac{1}{\e}+P(B\cap E)}+\theta\norm{\diver w}_\infty\,.
@@ -147,6 +179,7 @@ Now choosing $\eta$ and then $\theta$ small enough we obtain that
 \begin{align*}
 	\abs{F(A)}\leq \e\,.
 \end{align*}
+The claim now follows from Lemma \ref{le:alternativeCharge} with the alternative characterisation of charges.
 \end{proof}
 
 We now define the regularity of $\BV_c$-sets.
@@ -170,18 +203,19 @@ We call $E\in\BV_c$ $\e$-isoparametric if for all $T\in\BV$
 \end{align*}
 \end{definition}
 
-We now show that cubes are in fact an example of $\e$-isoparametric for some small $\e$ which only depends on the dimension $n$.
+This property is rather technical and is used for example in \cite[Definition 3.11]{Pfe2016} for extending the integral to functions which are defined on arbtirary sets $A\subseteq \R^n$.
+For cubes one can obtain the following result
+
 \newconstant{cubeIsoparam}
 \begin{proposition}[Cubes are $\e$-isoparametric]
-There exists a $\useconstant{cubeIsoparam}>0$ which depends only on the dimension s.t.\ every cube $C\subseteq\R^n$ is $\e$-isoparametric for every $\e<\useconstant{cubeIsoparam}$.
+There exists a constant $\useconstant{cubeIsoparam}>0$ which depends only on the dimension such that every cube $C\subseteq\R^n$ is $\e$-isoparametric for every $\e<\useconstant{cubeIsoparam}$.
 \end{proposition}
 \begin{proof}
-%Let $T\in\BV$
+See \cite[Lemma 3.1]{Pfe2016}.
 \end{proof}
 
-\begin{definition}[Gauge]
-We call a set thin if it is $\sigma$-finite w.r.t.\ $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R^n_{>0}$ for which $\brk[c]{\delta=0}$ is thin is called a gauge.
-\end{definition}
+We call a set thin if it is $\sigma$-finite with respect to $\cH^{n-1}$. A mapping $\delta\colon\R^n\to\R^n_{>0}$ for which $\brk[c]{\delta=0}$ is thin is called a gauge. Note that this definition of a gauge differs from the typical definition of a gauge used for the Henstock-Kurzweil integral in that it allows for $\delta$ to vanish.
+Now we can give a definition of partitions.
 
 \begin{definition}[Partitions]
 Let $\delta$ be a gauge and $\e>0$.
@@ -189,25 +223,36 @@ We call
 \begin{align*}
 	\cP=\brk[c]*{(E_1,x_1),\dots, (E_p,x_p)}
 \end{align*}
-a partition of the set $\bigcup\cP=\bigcup_iE_i$ if $E_i\in\BV_c$ are disjoint sets and $x_i\in\R^n$. A partition is called
+a partition of the set $\bigsqcup\cP=\bigsqcup_iE_i$ if for all $i$ the $E_i\in\BV_c$ are disjoint sets and $x_i\in\R^n$. A partition is called
 \begin{itemize}
-	\item dyadic if $E_i$ is a dyadic cube and $x_i\in E_i$ for all $i$
+	\item dyadic if $E_i$ is a dyadic cube and $x_i\in \closure\brk*{E_i}$ for all $i$
 	\item $\e$-regular if $r(E_i\cup\brk[c]{x_i})>\e$ for all $i$
 	\item strongly $\e$-regular if it is $\e$-regular, $E_i$ is $\e$-isoperimetric and $x_i\in\closure_*E_i$ for all $i$
 	\item $\delta$-fine if $E_i\subseteq B_{\delta(x_i)}(x_i)$ for all $i$
 \end{itemize}
 \end{definition}
 
-After all these definitions we are finally able to define the $R^*$-integral.
 
-\begin{definition}[$R^*$-integral]
-A function $f\colon \R^n\to\R$ is called $R^*$-integrable with respect to a charge $G$ if there is a charge $F$, s.t.\ for all $\e>0$ there exists a gauge $\delta$ such that
+In Figure \ref{fi:Partition} one can see an example of a $\delta$-fine dyadic partition of the interval $[a,b)$. Note that the intervals get smaller as $\delta$ gets smaller. Also note that $\delta$ can arbitrary as long as it is a map from $\R^n$ to $\R_{\geq0}$ which only vanishes on a thin set.
+
+
+\begin{figure}
+\centering
+\input{../Figures/Partition.pdf_tex}
+\caption{Example of a partition.}
+\label{fi:Partition}
+\end{figure}
+
+After all these definitions we are finally able to define the $R_*$-integral.
+
+\begin{definition}[$R_*$-integral]
+A function $f\colon \R^n\to\R$ is called $R_*$-integrable with respect to a charge $G$ if there is a charge $F$, such that for all $\e>0$ there exists a gauge $\delta$ such that
 \begin{align*}
 	\sum_{i=1}^p\abs{f(x_i)G(E_i)-F(E_i)}<\e
 \end{align*}
 for each strongly $\e$-regular $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dots,(E_p,x_p)}$. We call $F$ an indefinite integral of $f$ with respect to $G$ and write
 \begin{align*}
-	F=(R^*)\int f\dif G\,.
+	F=(R_*)\int f\dif G\,.
 \end{align*}
 \end{definition}
 
@@ -227,17 +272,17 @@ All dyadic cubes are nice.
 \begin{proof}
 Assume a dyadic cube $C=C^1$ is faulty and has diameter $r$. Then $C^1$ can be written as the disjoint union $C=\bigsqcup_iC_i$ of dyadic cubes $C_i$ with diameters less than $r/2$. Since $C$ is faulty at least one of the $C_i$, say $C^2=C_i$ is also faulty. Inductively we obtain a sequence of nested faulty dyadic cubes $C^j$ with diameters less than $r/2^j$. Thus
 \begin{align*}
-	\bigcap_jC^j=\brk[c]{x}
+	\bigcap_j\closure\brk*{C^j}=\brk[c]{x}
 \end{align*}
-for some $x\in C$. Let $j$ be s.t.\ $r/2^j<\sigma(x)$. Then we have that $\diam(C^j)<\sigma(x)$ and $x\in C^j$ so $C^j$ is nice. This is a contradiction.
+for some $x\in \closure(C)$. Let $j$ be such that $r/2^j<\sigma(x)$. Then we have that $\diam(C^j)<\sigma(x)$ and $x\in \closure\brk*{C^j}$ so $C^j$ is nice. This is a contradiction.
 \end{proof}
 
 We cite without proof the following proposition from \cite[Lemma 1.3.2]{Pfe2001}
 \newconstant{coveringLemma}
 \begin{proposition}\label{pr:coveringLemma}
-There exists a constant $\useconstant{coveringLemma}$ which depends only on the dimension $n$ such that for all $\delta>0$ and $T\subseteq\R^n$ with $t=\cH^{n-1}(T)<\infty$  there exists a family of dyadic cubes $\cK$ with diameters less than $\delta$ and
+There exists a constant $\useconstant{coveringLemma}>0$ which depends only on the dimension $n$ such that for all $\delta>0$ and $T\subseteq\R^n$ with $t=\cH^{n-1}(T)<\infty$  there exists a family of dyadic cubes $\cK$ with diameters less than $\delta$ and
 \begin{align*}
-	T\subseteq\interiour\bigcup\cK \qquad\text{ and }\qquad\sum_{K\in\cK}P(K)<\useconstant{coveringLemma} t\,.
+	T\subseteq\interior\bigsqcup\cK \qquad\text{ and }\qquad\sum_{K\in\cK}P(K)<\useconstant{coveringLemma} t\,.
 \end{align*}
 \end{proposition}
 
@@ -246,7 +291,7 @@ There exists a constant $\useconstant{coveringLemma}$ which depends only on the 
 \begin{lemma}\label{le:DisjointCube}
 Let $C$ be a cube $F$ be a charge, $\e>0$ and $\delta$ be a gauge. Then there exist a $\delta$-fine dyadic partition $\cP=\brk[c]*{(C_1,x_1),\dots,(C_q,x_q)}$ such that
 \begin{align*}
-	\abs{F}\brk*{C\setminus\bigcup\cP}<\e\,.
+	\abs*{F\brk*{C\setminus\bigsqcup\cP}}<\e\,.
 \end{align*}
 \end{lemma}
 \begin{proof}
@@ -264,12 +309,12 @@ and $C\subseteq B_{1/\e_i}(0)$ for all $i$. The reason for the choice of $\e$ in
 By the alternative characterisation of charges there exist $\theta_i$ such that $\abs{F(A)}<\e_i$ for each $A\in\BV_c$ such that $A\subseteq C$, $P(A)<1/\e_i$ and $\abs{A}<\theta_i$ for all $i$.
 By Proposition \ref{pr:coveringLemma} there exist families $\cK_i$ of dyadic cubes with diameters less than $\theta_i\e_i$, 
 \begin{align*}
-	T_i\subseteq \interiour\bigcup\cK_i
+	T_i\subseteq \interior\brk*{\bigsqcup\cK_i}
 	\qquad\text{ and }\qquad
 	\sum_{K\in\cK}\diam(K)^{n-1}<\useconstant{coveringLemma} t_i\,.
 \end{align*}
 
-Let $\cK$ be a disjoint subfamily of $\cK_0=\bigcup_i\cK$ such that $\bigcup\cK=\bigcup\cK_0$. Define a function $\sigma\colon C\to \R_{>0}$ by
+Let $\cK$ be a disjoint subfamily of $\cK_0=\bigcup_i\cK$ such that $\bigsqcup\cK=\bigcup\cK_0$. Define a function $\sigma\colon C\to \R_{>0}$ by
 \begin{align*}
 	\sigma(x)=\begin{cases}
 		\diam(K)&\text{ if }x\in K\cap T\text{ for a }K\in\cK\\
@@ -279,28 +324,28 @@ Let $\cK$ be a disjoint subfamily of $\cK_0=\bigcup_i\cK$ such that $\bigcup\cK=
 By Cousin's Lemma \ref{le:Cousin} there exists a dyadic $\sigma$-fine partition $\cC=\brk[c]*{(C_1,x_1),\dots,(C_p,x_p)}$ of $C$.
  We now do a reordering of indices such that
 \begin{align*}
-	\cC=\Big\{\underbrace{\brk*{C_1,x_1},\dots,\brk*{C_q,x_q}}_{C_i\not\subseteq\bigcup\cK\text{ for }1\leq i\leq q}\quad,\quad \underbrace{\brk*{C_{k_1+1},x_{k_1+1}},\dots,\brk*{C_{k_2},x_{k_2}}}_{\substack{C_i\subseteq \bigcup\cK_1 \text{ for all } \\ q=k_1< i\leq k_2}}\qquad\qquad&\\
-	\qquad\qquad,\qquad\dots\qquad,\quad \underbrace{\brk*{C_{k_m+1},x_{k_m+1}},\dots,\brk*{C_{k_{m+1}},x_{k_{m+1}}}}_{\substack{C_i\subseteq \cK_m\setminus \brk*{\brk*{\bigcup\cK_1}\cup\dots\cup\brk*{\bigcup\cK_{m-1}}}\\ \text{ for all }  k_m< i\leq k_{m+1}=p}}\Big\}&\,.
+	\cC=\Big\{\underbrace{\brk*{C_1,x_1},\dots,\brk*{C_q,x_q}}_{C_i\not\subseteq\bigsqcup\cK\text{ for }1\leq i\leq q}\quad,\quad \underbrace{\brk*{C_{k_1+1},x_{k_1+1}},\dots,\brk*{C_{k_2},x_{k_2}}}_{\substack{C_i\subseteq \bigsqcup\cK_1 \text{ for all } \\ q=k_1< i\leq k_2}}\qquad\qquad&\\
+	\qquad\qquad,\qquad\dots\qquad,\quad \underbrace{\brk*{C_{k_m+1},x_{k_m+1}},\dots,\brk*{C_{k_{m+1}},x_{k_{m+1}}}}_{\substack{C_i\subseteq \cK_m\setminus \brk*{\brk*{\bigsqcup\cK_1}\cup\dots\cup\brk*{\bigsqcup\cK_{m-1}}}\\ \text{ for all }  k_m< i\leq k_{m+1}=p}}\Big\}&\,.
 \end{align*}
 We set $\cP=\brk[c]*{(C_1,x_1),\dots,(C_1,x_1)}$. Since by construction we have that $x_j\in T$ implies that there exists a cube $K\in\cK_i$ such that $C_i\subseteq K$ it follows that $\cP$ is a $\delta$-fine dyadic partition.
 We now have by Proposition \ref{pr:coveringLemma} and the choice of $\e_i$ that
 \begin{align*}
-	P\brk4{\bigcup_{k_i<k\leq k_{i+1}}C_k}
+	P\brk4{\bigsqcup_{k_i<k\leq k_{i+1}}C_k}
 	\leq \sum_{K\in\cK_i}P(K)
 	\leq \frac{1}{\e_i}
 \end{align*}
 and it thus follows further that
 \begin{align*}
-	\abs4{\bigcup_{k_i<k\leq k_{i+1}}C_k}
-	\leq \abs*{\bigcup\cK_i}
+	\abs4{\bigsqcup_{k_i<k\leq k_{i+1}}C_k}
+	\leq \abs*{\bigsqcup\cK_i}
 	\leq \sum_{K\in\cK_i}\diam(K)P(K)
 	<\e_i\theta_i\sum_{K\in\cK_i}P(K)\leq \theta_i
 \end{align*}
 so
 \begin{align*}
-	\abs{F}\brk*{C\setminus\bigcup_{i=1}^q C_i}
-	&=\abs{F}\brk*{\bigcup_{i=q+1}^p C_j} \\
-	&\leq \sum_{i=1}^m\abs*{F}\brk4{\bigcup_{k_i<k\leq k_{i+1}}C_k} \\
+	\abs*{F\brk*{C\setminus\bigsqcup_{i=1}^q C_i}}
+	&=\abs*{F\brk*{\bigsqcup_{i=q+1}^p C_j}} \\
+	&\leq \sum_{i=1}^m\abs4{F\brk4{\bigsqcup_{k_i<k\leq k_{i+1}}C_k}} \\
 	&\leq \sum_{i=1}^m\e_i \\
 	&\leq \sum_{i\geq 1}2^{-i}\e=\e
 \end{align*}
@@ -310,14 +355,14 @@ so
 The integral is unique.
 \end{claim}
 \begin{proof}
-We follow \cite[Proposition 3.4]{Pfe2016}. Let $F_1$ and $F_2$ be $R_*$-integrals of $f$ w.r.t.\ $G$. We set $H=\abs{F_1-F_2}$. Now choose a cube $C\subseteq \R^n$ and $0<\e<\useconstant{cubeIsoparam}$. Let $\delta$ be the corresponding gauge to $\e$ in the definition of the integral. By Lemma \ref{le:DisjointCube} there exists a $\delta$-fine dyadic partition $\cP=\brk[c]*{(C_1,x_1),\dots,(C_q,x_q)}$ such that
+We follow \cite[Proposition 3.4]{Pfe2016}. Let $F_1$ and $F_2$ be $R_*$-integrals of $f$ with respect to $G$. We set $H=\abs{F_1-F_2}$. Now choose a cube $C\subseteq \R^n$ and $0<\e<\useconstant{cubeIsoparam}$. Let $\delta$ be the corresponding gauge to $\e$ in the definition of the integral. By Lemma \ref{le:DisjointCube} there exists a $\delta$-fine dyadic partition $\cP=\brk[c]*{(C_1,x_1),\dots,(C_q,x_q)}$ such that
 \begin{align*}
-	\abs{H}\brk*{C\setminus \bigcup\cP}<\e\,.
+	\abs*{H\brk*{C\setminus \bigsqcup\cP}}<\e\,.
 \end{align*}
 It then follows that
 \begin{align*}
 	\abs{H(C)}
-	&\leq \abs{H}\brk*{C\setminus \bigcup\cP}+\abs{H}\brk*{\bigcup\cP} \\
+	&\leq \abs*{H\brk*{C\setminus \bigsqcup\cP}}+\abs*{H\brk*{\bigsqcup\cP}} \\
 	&\leq\e+\abs*{\sum_i\brk*{F_1(C_i)-F_2(C_i)}} \\
 	&\leq \e+\sum_i\abs*{F_1(C_i)-f(x_i)G(C_i)} +\sum_i\abs*{f(x_i)G(C_i)-F_2(C_i)} \\
 	&\leq 3\e\xrightarrow{\e\to0}0
@@ -330,7 +375,7 @@ Lemma \ref{le:DensityCubes} on the density of cubes that $H=0$ and hence $F_1=F_
 \begin{claim}[Linearity of the integral]
 Let $f_1,f_2$ be $R_*$-integrable and $a\in\R$. Then $f_1+af_2$ is also integrable and
 \begin{align*}
-	(R^*)\int f_1\dif G + (R^*)\int f_2\dif G=(R^*)\int f_1+\alpha f_2\dif G\,.
+	(R_*)\int f_1\dif G + (R_*)\int f_2\dif G=(R_*)\int f_1+\alpha f_2\dif G\,.
 \end{align*}
 \end{claim}
 
@@ -352,32 +397,58 @@ for every strongly $\e$-regular $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dot
 
 \section{What this integral is good for?}
 
-In \cite[Proposition 3.5]{Pfe2016} it is stated that integral generalises the Lebesgue integral on $\R^n$.
+In this section we cite some interesting results for the Malý-Pfeffer without giving much deeper motivation or proof. The first result shows that the $R_*$-integral is an extension of the Lebesgue integral on $\R^n$.
 
 \begin{proposition}[Generalisation of the Lebesgue integral on $\R^n$]
 Each Lebesgue-integrable function is also $R_*$-integrable and the integrals conincide.
 \end{proposition}
+\begin{proof}
+See \cite[Proposition 3.5]{Pfe2016}.
+\end{proof}
 
-\noindent The integral generalises the Henstock-Kurzweil integral on $\R$.
-It is shown in \cite[Proposition 3.6]{Pfe2016} that
+\noindent
+From this it follows that the Malý-Pfeffer integral does not depend on $\cL^n$-nullsets. We now define the according to \cite[Appendix H]{Coh2013} the Henstock-Kurzweil integral.
+
+\begin{definition}[Henstock-Kurzweil integral]
+Given a bounded  interval $[a,b]\subseteq\R$ and a function $f\colon[a,b]\to\R$ we call $f$ Henstock-Kurzweil integrable with integral $L\in\R$ if for every $\e>0$ there exists a nowhere vanishing gauge $\delta$ such that
+\begin{align*}
+	\abs3{\sum_iF\abs{E_i}-L}<\e
+\end{align*}
+for all $\delta$-fine dyadic partitions $\brk[c]*{\brk*{E_1,x_1},\dots,\brk*{E_p,x_p}}$ of $[a,b]$.
+\end{definition}
+
+It can also be shown that the integral generalises the Henstock-Kurzweil integral on $\R$. 
 
 \begin{proposition}[Generalisation of the Henstock-Kurzweil integral on $\R$]
-A function $f\colon\R\to\R$ is Denjoy-Perron integrable on a compact $A\subseteq\R$ iff it is $R_*$-integrable and the two integrals coincide on $A$.
+A function $f\colon\R\to\R$ is Henstock-Kurzweil integrable on a compact $A\subseteq\R$ iff it is $R_*$-integrable and the two integrals coincide on $A$.
 \end{proposition}
+\begin{proof}
+See \cite[Proposition 3.6]{Pfe2016}.
+%Wee follow \cite[Proposition 3.6]{Pfe2016}.
+%Let $f$ be $R_*$ integrable with indefinite integral $F=(R_*)\!\!\int f\dif\cL^n$ . Let $[a,b]\subseteq\R$ be a compact interval and $\e>0$. Then there exists $\delta$ such that
+%\begin{align*}
+%	\sum_i\abs*{f(x_i)\abs*{E_i}-F\abs*{E_i}}<\e
+%\end{align*}
+%for every $\delta$-fine partition $\brk[c]*{(E_1,x_1),\dots,(E_p,x_p)}$ 
+\end{proof}
 
 \noindent We now turn back to the divergence theorem. For this we need some additional conditions on our sets.
 
 \begin{definition}[Admissable sets]
-We call a set admissable if $\interiour_*A\subseteq A\subseteq \closure_*A$ and $\partial A$ is compact. The set of admissible $\BV$-sets is denoted by $\ABV$.
+We call a set admissable if $\interior_*A\subseteq A\subseteq \closure_*A$ and $\partial A$ is compact. The set of admissible $\BV$-sets is denoted by $\ABV$.
 \end{definition}
 
-\noindent It is shown in \cite[Corollary 3.18]{Pfe2016} that for admissable sets the $R_*$-integral and the classical Pfeffer integral which is defined in \cite[Pfe1992] coincide. That is
+\noindent
+One can then show that for admissable sets the $R_*$-integral and the classical Pfeffer integral which is defined in \cite[Pfe1992] coincide
 
 \begin{proposition}[Generalisation of the Pfeffer-Integral on $\R^n$]\label{pr:GeneralisationPfeffer}
 Let $A\in\ABV$. Then each Pfeffer-integrable function is also $R_*$-integrable and the integrals coincide on $A$.
 \end{proposition}
+\begin{proof}
+See \cite[Corollary 3.18]{Pfe2016}.
+\end{proof}
 
-\noindent We now turn our attention to the divergence theorem which is one of the major motivations for the Pfeffer integral and hence also the $R^*$-integral.
+\noindent We now turn our attention to the divergence theorem which is one of the major motivations for the Pfeffer integral and hence also the $R_*$-integral.
 The following definition is from \cite{Pfe1991}.
 We say that $w\in C(\closure(A);\R^n)$ such that $w$ is pointwise Lipschitz on a set $E\subseteq A$ if we have that
 \begin{align*}
@@ -387,18 +458,38 @@ for all $x\in E$ where $w$ was possibly extended in a neighbourhood around $x$. 
 \begin{align*}
 	\diver w=\sum_{i=1}^n\partial_iw_i
 \end{align*}
-almost everywhere on $E$. It is shown in \cite[Lemma 5.16]{Pfe1991} that $\diver w$ is well defined, i.e.\ it does not depend on the extension around a neighbourhood. With this we obtain from \cite[Theorem 5.19]{Pfe1991} and Proposition \ref{pr:GeneralisationPfeffer} that
+almost everywhere on $E$. It is shown in \cite[Lemma 5.16]{Pfe1991} that $\diver w$ is well defined, that is it does not depend on the extension around a neighbourhood. With this one can obtain
 
-\begin{theorem}[Divergence theorem]
+\begin{theorem}[Divergence theorem]\label{th:divergence}
 Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipschitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
 \begin{align*}
-	(R^*)\int_A\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
+	(R_*)\int_A\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
 \end{align*}
 where $\nu_A\colon \partial_* A\to S^{n-1}\subseteq\R^n$ is the unit normal to $A$.
 \end{theorem}
+\begin{proof}
+Follows from \cite[Theorem 5.19]{Pfe1991} and Proposition \ref{pr:GeneralisationPfeffer}.
+\end{proof}
 
+%Beyond this one can also show a change of variables formula
+%
+%\begin{theorem}[Change of variables]
+%Let $\emptyset\neq\Omega\subseteq\R^n$ be an open set and $Phi\colon\Omega\to\R^n$ be a lipeomorphism, $A\in\ABV$, such that $\closure(A)\subseteq\Omega$ and $f\colon\Phi(A)\to\R$. Then $f$ is $R_*$-integrable on $\Phi(A)$ iff $(f\colon\Phi)\abs{\det\Phi}$ is $R_*$-integrable on $A$ in which case one obtains
+%\begin{align*}
+%n	
+%\end{align*}
+%\end{theorem}
+
+\section{Summary}
+
+In summary the Malý-Pfeffer integral is an interesting extension of the Henstock-Kurzweil integral. Similarly, it is defined using gauges albeit with slight differences to the gauges used when defining the Henstock-Kurzweil integral. On the one hand these gauges are required to be strongly $\e$-regular. On the other they are allowed to vanish on thin sets. These additional requirements guarantee that a relatively general version of the divergence theorem holds for this integral. A further interesting concept is the concept of charges. This approach to integration however also has visible limitations. For one, the space over which one integrates is not particularly general. Another problem is that the construction is quite technical in many parts to fix some shortcomings of Henstock-Kurzweil integration.
+
+\newpage
 \section*{Bibliography}
 \nocite{*}
-\printbibliography[heading=none]
+Main source
+\printbibliography[heading=none, keyword={main}]
+\noindent Other sources
+\printbibliography[heading=none, keyword={secondary}]
 
 \end{document}

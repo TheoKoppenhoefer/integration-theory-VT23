@@ -5,8 +5,11 @@ It includes a project presentation (Presentation/...) and a project report (Repo
 
 ## TODO
 - show that squares are epsilon-isoparametric
+
+- add something to isoperimetric?
+- what is the isoparametricity used for?
 - mention properties like positivity of the integral.
 - add image of proof
 - discuss surface measure of a cube
-- define dyadic cubes, disjoint / nonoverlapping
-- citation for existence of normals on BV-sets
+- add Henstock-Kurzweil extension?
+- add conclusion
