@@ -25,7 +25,7 @@
 The following essay presents the $R_*$-integral defined in \cite{Pfe2016} as part of the course MATP39, Specialised Course in Integration Theory. We will refer to this integral also as the Malý-Pfeffer integral. First we will briefly motivate the integral. Then we describe the construction of the integral. After that we show the uniqueness of the definition and the linearity of the integral. Then we state some facts regarding this integral to motivate why the integral is potentially interesting. Finally we give a conclusion. The report and the presentation of this topic can be found online under \cite{Repository}.
 
 
-\section{Motivation of the Malý-Pfeffer integral.}
+\section{Motivation of the Malý-Pfeffer integral}
 
 Given a suitable set $A\subseteq\R^n$ and a suitable vector field $w\colon\R^n\to\R^n$ the divergence theorem states that
 \begin{align}
@@ -327,8 +327,8 @@ Let $\cK$ be a disjoint subfamily of $\cK_0=\bigcup_i\cK_i$ such that $\bigsqcup
 By Cousin's Lemma there exists a dyadic $\sigma$-fine partition $\cC=\brk[c]*{(C_1,x_1),\dots,(C_p,x_p)}$ of $C$.
  We now do a reordering of indices such that
 \begin{align*}
-	\cC=\Big\{\underbrace{\brk*{C_1,x_1},\dots,\brk*{C_q,x_q}}_{C_i\cap\brk*{\bigcup\cK}=\emptyset\text{ for }1\leq i\leq q}\quad,\quad \underbrace{\brk*{C_{k_1+1},x_{k_1+1}},\dots,\brk*{C_{k_2},x_{k_2}}}_{\substack{C_i\subseteq \bigcup\cK_1 \text{ for all } \\ q=k_1< i\leq k_2}}\qquad\qquad&\\
-	\qquad\qquad,\qquad\dots\qquad,\quad \underbrace{\brk*{C_{k_m+1},x_{k_m+1}},\dots,\brk*{C_{k_{m+1}},x_{k_{m+1}}}}_{\substack{C_i\subseteq \cK_m \text{ for all}\\  k_m< i\leq k_{m+1}=p}}\Big\}&\,.
+	\cC=\Big\{\underbrace{\brk*{C_1,x_1},\dots,\brk*{C_q,x_q}}_{C_k\cap\brk*{\bigcup\cK}=\emptyset\text{ for }1\leq k\leq q}\quad,\quad \underbrace{\brk*{C_{k_1+1},x_{k_1+1}},\dots,\brk*{C_{k_2},x_{k_2}}}_{\substack{C_k\subseteq \bigcup\cK_1 \text{ for all } \\ q=k_1< k\leq k_2}}\qquad\qquad&\\
+	\qquad\qquad,\qquad\dots\qquad,\quad \underbrace{\brk*{C_{k_m+1},x_{k_m+1}},\dots,\brk*{C_{k_{m+1}},x_{k_{m+1}}}}_{\substack{C_k\subseteq \cK_m \text{ for all}\\  k_m< k\leq k_{m+1}=p}}\Big\}&\,.
 \end{align*}
 We set $\cP=\brk[c]*{(C_1,x_1),\dots,(C_q,x_q)}$. Since by construction we have that $x_j\in T$ implies that there exists a cube $K\in\cK_i$ such that $C_i\subseteq K$ it follows that $\cP$ is a $\delta$-fine dyadic partition.
 We now have by Proposition \ref{pr:coveringLemma} and the choice of $\e_i$ that
@@ -337,14 +337,14 @@ We now have by Proposition \ref{pr:coveringLemma} and the choice of $\e_i$ that
 	\leq \sum_{K\in\cK_i}P(K)
 	\leq \frac{1}{\e_i}
 \end{align*}
-and it thus follows further that
+and also
 \begin{align*}
 	\abs4{\bigsqcup_{k_i<k\leq k_{i+1}}C_k}
-	\leq \abs*{\bigsqcup\cK_i}
+	\leq \abs*{\bigcup\cK_i}
 	\leq \sum_{K\in\cK_i}\diam(K)P(K)
-	<\e_i\theta_i\sum_{K\in\cK_i}P(K)\leq \theta_i
+	<\e_i\theta_i\sum_{K\in\cK_i}P(K)\leq \theta_i\,.
 \end{align*}
-so
+Thus it follows that
 \begin{align*}
 	\abs*{F\brk*{C\setminus\bigsqcup_{i=1}^q C_i}}
 	&=\abs*{F\brk*{\bigsqcup_{i=q+1}^p C_j}} \\
@@ -373,8 +373,9 @@ It then follows that
 \end{align*}
 and thus $H(C)=0$. Since $C$ was an arbitrary dyadic cube it follows from 
 Lemma \ref{le:DensityCubes} on the density of cubes that $H=0$ and hence $F_1=F_2$.
-
 \end{proof}
+
+To give a feeling for the definition of the integral we will also show the linearity.
 
 \begin{claim}[Linearity of the integral]
 Let $f_1,f_2$ be $R_*$-integrable and $\alpha\in\R$. Then $f_1+\alpha f_2$ is also $R_*$-integrable and
@@ -399,7 +400,7 @@ for every strongly $\e$-regular $\delta$-fine partition $\brk[c]*{\brk*{E_1,x_1}
 \end{proof}
 
 
-\section{What this integral is good for?}
+\section{What this integral is good for}
 
 In this section we cite some interesting results for the Malý-Pfeffer without giving much deeper motivation or proof. The first result shows that the $R_*$-integral is an extension of the Lebesgue integral on $\R^n$.
 
@@ -465,7 +466,7 @@ for all $x\in E$ where $w$ was possibly extended in a neighbourhood around $x$. 
 almost everywhere on $E$. \cite[Lemma 5.16]{Pfe1991} shows that $\diver w$ is well defined, that is, it does not depend on the extension around a neighbourhood of $E$. With this we obtain
 
 \begin{theorem}[Divergence theorem]\label{th:divergence}
-Let $A\in\ABV$, $S\subseteq A$ a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipschitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
+Let $A\in\ABV$, let $S\subseteq A$ be a thin set and $w\in C(\closure(A);\R^n)$ a continuous vector field which is pointwise Lipschitz on $A\setminus S$. Then $\diver w$ is $R_*$-integrable and
 \begin{align*}
 	(R_*)\!\!\int_A\diver w\dif\cL^n=\int_{\partial_* A}w\cdot \nu_A\dif \cH^{n-1}
 \end{align*}
